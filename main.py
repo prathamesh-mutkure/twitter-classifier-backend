@@ -60,5 +60,18 @@ def load_tweet_from_hashtag():
     return tweets
 
 
+@app.route("/tweets/id")
+def load_tweet_from_id():
+    data = request.json
+    tweet_id = data['id']
+
+    tweet = client.get_tweet(tweet_id)
+
+    return {
+        "id": tweet.data.id,
+        "text": tweet.data.text,
+    }
+
+
 if __name__ == "__main__":
     app.run(debug=True)
