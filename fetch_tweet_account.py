@@ -8,6 +8,7 @@ Original file is located at
 """
 
 import tweepy
+import ml
 
 client = tweepy.Client(bearer_token='AAAAAAAAAAAAAAAAAAAAAGr9hQEAAAAApYgTuc9DqLffRiZzJXqssJndaGg%3D1gH5uqhTJ9jJV54Cx9KZhB9Cop2qY4dgOtbwgR87YXWqXJNXO3')
 
@@ -18,4 +19,5 @@ query = 'from:elonmusk -is:retweet'
 for tweet in tweepy.Paginator(client.search_recent_tweets, query=query,
                               tweet_fields=['context_annotations', 'created_at'], max_results=100).flatten(limit=4):
     print(tweet)
+    print(ml.function_1(tweet.text))
 
