@@ -2,10 +2,14 @@ from flask import Flask, request
 from dotenv import load_dotenv
 import tweepy
 import os
+from flask_cors import CORS
+
 
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app)
+
 
 BEARER_TOKEN = os.environ.get('BEARER_TOKEN')
 client = tweepy.Client(bearer_token=BEARER_TOKEN)
@@ -30,6 +34,19 @@ def get_tweets_by_query(query: str, limit):
             "id": tweet.id,
             "text": tweet.text,
         })
+
+    return tweets
+
+
+@app.route("/tweets/query", methods=['POST'])
+def load_tweet_from_query():
+    data = request.json
+    _query = data['query']
+    limit = data['limit']
+
+    # tweet_type = data['type']
+
+    tweets = get_tweets_by_query(_query, limit)
 
     return tweets
 
@@ -60,7 +77,7 @@ def load_tweet_from_hashtag():
     return tweets
 
 
-@app.route("/tweets/id")
+@app.route("/tweets/id", methods=["POST"])
 def load_tweet_from_id():
     data = request.json
     tweet_id = data['id']
