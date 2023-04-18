@@ -35,7 +35,7 @@ def get_tweets_by_query(query: str, limit):
         sentiment = ml.function_1(tweet.text)
 
         tweets.append({
-            "id": tweet.id,
+            "id": str(tweet.id),
             "sentiment": sentiment.tolist()[0],
         })
 
@@ -63,7 +63,7 @@ def load_tweet_from_id():
     sentiment = ml.function_1(tweet.data.text)
 
     return {
-        "id": tweet.data.id,
+        "id": str(tweet.data.id),
         "sentiment": sentiment.tolist(),
     }
 
