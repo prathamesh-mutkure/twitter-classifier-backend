@@ -36,7 +36,7 @@ def get_tweets_by_query(query: str, limit):
 
         tweets.append({
             "id": tweet.id,
-            "sentiment": sentiment.tolist(),
+            "sentiment": sentiment.tolist()[0],
         })
 
     return tweets
