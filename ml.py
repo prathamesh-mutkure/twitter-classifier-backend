@@ -199,10 +199,10 @@ def preprocess(text):
 
 #load data
 
-tfidf_dict = joblib.load(r'C:\Users\nimis_r\OneDrive\Desktop\INTERNSHIPS\Temp\twitter-classifier-backend\ml_models\tfidf_dict.pkl')
-tfidf_words = joblib.load(r'C:\Users\nimis_r\OneDrive\Desktop\INTERNSHIPS\Temp\twitter-classifier-backend\ml_models\tfidf_words.pkl')
-w2v_dict = joblib.load(r'C:\Users\nimis_r\OneDrive\Desktop\INTERNSHIPS\Temp\twitter-classifier-backend\ml_models\w2v_dict.pkl')
-w2v_words = joblib.load(r'C:\Users\nimis_r\OneDrive\Desktop\INTERNSHIPS\Temp\twitter-classifier-backend\ml_models\w2v_words.pkl')
+tfidf_dict = joblib.load(r'./ml_models/tfidf_dict.pkl')
+tfidf_words = joblib.load(r'./ml_models/tfidf_words.pkl')
+w2v_dict = joblib.load(r'./ml_models/w2v_dict.pkl')
+w2v_words = joblib.load(r'./ml_models/w2v_words.pkl')
 
 # computing tf-idf weighted word2vec for each comment.
 
@@ -231,8 +231,8 @@ def comp_tfidf_weighted_w2v(data,w2v_words,tfidf_words,w2v_dict,tfidf_dict):
     return np.array(tfidf_w2v)
 
 #loading model
-model=load_model(r"C:\Users\nimis_r\OneDrive\Desktop\INTERNSHIPS\Temp\twitter-classifier-backend\ml_models\nlp_model.h5", compile=False)
-model.save(r"C:\Users\nimis_r\OneDrive\Desktop\INTERNSHIPS\Temp\twitter-classifier-backend\ml_models\best_model.hdf5")
+model=load_model(r"./ml_models/nlp_model.h5", compile=False)
+model.save(r"./ml_models/best_model.hdf5")
 
 def cal_metrics(y_true,y_pred):
     
