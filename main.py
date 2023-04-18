@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import tweepy
 import os
 from flask_cors import CORS
-
+import ml
 
 load_dotenv()
 
@@ -30,9 +30,11 @@ def get_tweets_by_query(query: str, limit):
     tweets = []
 
     for tweet in tweets_raw:
+        sentiment = ml.function_1(tweet.text)
+
         tweets.append({
             "id": tweet.id,
-            "text": tweet.text,
+            "sentiment": sentiment,
         })
 
     return tweets
@@ -84,9 +86,13 @@ def load_tweet_from_id():
 
     tweet = client.get_tweet(tweet_id)
 
+    sentiment = ml.function_1(tweet.text)
+
+    print(sentiment)
+
     return {
         "id": tweet.data.id,
-        "text": tweet.data.text,
+        "sentiment": sentiment
     }
 
 
