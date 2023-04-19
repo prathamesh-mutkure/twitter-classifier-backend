@@ -160,5 +160,19 @@ def load_tweet_from_id():
     return tweet_new
 
 
+@app.route("/text", methods=["POST"])
+def load_tweet_from_id():
+    data = request.json
+    text = data['text']
+
+    sentiment = ml.function_1(text)
+
+    data = {
+        "sentiment": sentiment.tolist()[0],
+    }
+
+    return data
+
+
 if __name__ == "__main__":
     app.run(debug=True)
