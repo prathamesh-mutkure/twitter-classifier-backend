@@ -11,3 +11,4 @@ scipy==1.7.1
 tensorflow==2.7.0
 tweepy==4.13.0
 wordcloud==1.8.2.2
+SQLAlchemy
