@@ -161,7 +161,7 @@ def load_tweet_from_id():
 
 
 @app.route("/text", methods=["POST"])
-def load_tweet_from_id():
+def process_text():
     data = request.json
     text = data['text']
 
